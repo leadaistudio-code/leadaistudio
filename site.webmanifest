@@ -1,0 +1,17 @@
+{
+  "name": "Lead AI Studio",
+  "short_name": "LeadAIStudio",
+  "description": "Secure, enterprise-grade AI solutions for automation, lead generation, LinkedIn growth and voice assistance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07070f",
+  "theme_color": "#0a0a18",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
