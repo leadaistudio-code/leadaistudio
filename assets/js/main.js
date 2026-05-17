@@ -201,6 +201,77 @@
     });
   }
 
+  /* ---- carousel (testimonials & any [data-carousel]) ---- */
+  $$("[data-carousel]").forEach(function (root) {
+    var track  = $(".carousel-track", root);
+    var slides = $$(".carousel-slide", root);
+    if (!track || slides.length < 2) return;
+
+    var prev = $(".carousel-arrow.prev", root);
+    var next = $(".carousel-arrow.next", root);
+    var dotsWrap = $(".carousel-dots", root);
+    var autoMs = parseInt(root.getAttribute("data-autoplay"), 10) || 0;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var index = 0, timer = null, dots = [];
+
+    if (dotsWrap) {
+      slides.forEach(function (_, i) {
+        var d = document.createElement("button");
+        d.type = "button";
+        d.className = "carousel-dot";
+        d.setAttribute("aria-label", "Go to slide " + (i + 1));
+        d.addEventListener("click", function () { go(i, true); });
+        dotsWrap.appendChild(d);
+        dots.push(d);
+      });
+    }
+
+    function render() {
+      track.style.transform = "translateX(" + (-index * 100) + "%)";
+      dots.forEach(function (d, i) {
+        d.classList.toggle("active", i === index);
+        d.setAttribute("aria-selected", String(i === index));
+      });
+      slides.forEach(function (s, i) { s.setAttribute("aria-hidden", String(i !== index)); });
+    }
+    function go(i, user) {
+      index = (i + slides.length) % slides.length;
+      render();
+      if (user) restart();
+    }
+    function start() { if (autoMs && !reduce) timer = setInterval(function () { go(index + 1); }, autoMs); }
+    function stop()  { clearInterval(timer); }
+    function restart() { stop(); start(); }
+
+    if (prev) prev.addEventListener("click", function () { go(index - 1, true); });
+    if (next) next.addEventListener("click", function () { go(index + 1, true); });
+
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", start);
+    root.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft")  { e.preventDefault(); go(index - 1, true); }
+      if (e.key === "ArrowRight") { e.preventDefault(); go(index + 1, true); }
+    });
+
+    var x0 = null;
+    track.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+    track.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1), true);
+      x0 = null; start();
+    }, { passive: true });
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else start();
+    });
+
+    render();
+    start();
+  });
+
   /* ---- generic form validation ---- */
   $$("form[data-validate]").forEach(function (form) {
     var note = $(".form-note", form);
@@ -225,4 +296,155 @@
       form.reset();
     });
   });
+
+  /* ---- dark / light theme toggle ---- */
+  (function () {
+    var root = document.documentElement;
+    var actions = $(".header-actions");
+    function syncMeta() {
+      var m = $('meta[name="theme-color"]');
+      if (m) m.setAttribute("content", root.getAttribute("data-theme") === "dark" ? "#0b1626" : "#0b1f3d");
+    }
+    syncMeta();
+    if (!actions) return;
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "theme-toggle";
+    btn.setAttribute("aria-label", "Toggle dark mode");
+    btn.title = "Toggle light / dark theme";
+    btn.innerHTML =
+      '<svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>' +
+      '<svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>';
+    btn.addEventListener("click", function () {
+      var dark = root.getAttribute("data-theme") === "dark";
+      root.setAttribute("data-theme", dark ? "light" : "dark");
+      try { localStorage.setItem("theme", dark ? "light" : "dark"); } catch (e) {}
+      syncMeta();
+    });
+    actions.insertBefore(btn, actions.firstChild);
+  })();
+
+  /* ---- scroll progress bar ---- */
+  (function () {
+    var bar = document.createElement("div");
+    bar.className = "scroll-progress";
+    document.body.appendChild(bar);
+    function upd() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+    }
+    upd();
+    window.addEventListener("scroll", upd, { passive: true });
+    window.addEventListener("resize", upd);
+  })();
+
+  /* ---- back-to-top button ---- */
+  (function () {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "to-top";
+    btn.setAttribute("aria-label", "Back to top");
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+    btn.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+    document.body.appendChild(btn);
+    window.addEventListener("scroll", function () {
+      btn.classList.toggle("show", window.scrollY > 600);
+    }, { passive: true });
+  })();
+
+  /* ---- hero visual: animate progress bars on load ---- */
+  $$("[data-bar]").forEach(function (el) {
+    var target = el.getAttribute("data-bar") + "%";
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.style.width = target; return; }
+    el.style.width = "0";
+    setTimeout(function () {
+      el.style.transition = "width 1.4s cubic-bezier(.22,1,.36,1)";
+      el.style.width = target;
+    }, 400);
+  });
+
+  /* ---- video / product-tour modal ---- */
+  (function () {
+    var triggers = $$("[data-video]");
+    if (!triggers.length) return;
+    var modal = document.createElement("div");
+    modal.className = "video-modal";
+    modal.innerHTML =
+      '<div class="vm-inner">' +
+      '<button class="vm-close" type="button" aria-label="Close video">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
+      '<iframe title="Lead AI Studio product tour" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>' +
+      '</div>';
+    document.body.appendChild(modal);
+    var frame = $("iframe", modal);
+    function close() {
+      modal.classList.remove("open");
+      frame.src = "";
+      document.body.style.overflow = "";
+    }
+    function open(id) {
+      frame.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+      $(".vm-close", modal).focus();
+    }
+    triggers.forEach(function (t) {
+      t.addEventListener("click", function () { open(t.getAttribute("data-video")); });
+      t.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(t.getAttribute("data-video")); }
+      });
+    });
+    $(".vm-close", modal).addEventListener("click", close);
+    modal.addEventListener("click", function (e) { if (e.target === modal) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("open")) close();
+    });
+  })();
+
+  /* ---- wire up footer legal links ---- */
+  $$(".footer-legal a").forEach(function (a) {
+    var t = (a.textContent || "").toLowerCase();
+    if (t.indexOf("privacy") > -1) a.setAttribute("href", "privacy.html");
+    else if (t.indexOf("terms") > -1) a.setAttribute("href", "terms.html");
+    else if (t.indexOf("security") > -1) a.setAttribute("href", "security.html");
+  });
+
+  /* ---- cookie consent banner ---- */
+  var consent = null;
+  try { consent = localStorage.getItem("cookieConsent"); } catch (e) {}
+  if (!consent) {
+    var bar = document.createElement("div");
+    bar.className = "cookie-bar";
+    bar.setAttribute("role", "dialog");
+    bar.setAttribute("aria-label", "Cookie and privacy notice");
+    bar.innerHTML =
+      '<h4>We value your privacy</h4>' +
+      '<p>We use privacy-friendly, cookieless analytics to understand what’s useful on this site. ' +
+      'Read our <a href="privacy.html">Privacy Policy</a>.</p>' +
+      '<div class="cookie-actions">' +
+      '<button class="btn btn-primary btn-sm" data-cc="accepted">Accept</button>' +
+      '<button class="btn btn-outline btn-sm" data-cc="declined">Decline</button>' +
+      '</div>';
+    document.body.appendChild(bar);
+    requestAnimationFrame(function () { bar.classList.add("show"); });
+    $$("[data-cc]", bar).forEach(function (b) {
+      b.addEventListener("click", function () {
+        try { localStorage.setItem("cookieConsent", b.getAttribute("data-cc")); } catch (e) {}
+        bar.classList.remove("show");
+        setTimeout(function () { bar.remove(); }, 500);
+      });
+    });
+  }
+
+  /* ---- privacy-friendly analytics (Plausible, cookieless) ----
+     Register your domain at plausible.io, then this loads automatically.
+     Skipped if the visitor declined in the cookie banner. */
+  if (consent !== "declined") {
+    var an = document.createElement("script");
+    an.defer = true;
+    an.setAttribute("data-domain", "leadaistudio.com");
+    an.src = "https://plausible.io/js/script.js";
+    document.head.appendChild(an);
+  }
 })();

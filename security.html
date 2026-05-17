@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1f3d" />
+  <script>
+    /* apply saved/system theme before paint — avoids dark-mode flash */
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Security | Lead AI Studio</title>
+  <meta name="description" content="How Lead AI Studio protects data — guardrails, zero-data-retention, private infrastructure, access control, monitoring and responsible disclosure." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.leadaistudio.com/security.html" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Lead AI Studio home">
+        <img src="assets/img/logo.svg" alt="" width="30" height="30" />
+        <span class="brand-name">Lead<span class="brand-accent">AI</span>Studio</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a class="header-login" href="contact.html">Sign in</a>
+        <a class="btn btn-primary" href="contact.html">Book a demo</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================== PAGE HERO ===================== -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Home</a> / Security</p>
+        <h1>Security at Lead AI Studio</h1>
+        <p>Trust is engineered into every deployment from day one. Here is how we protect data.</p>
+      </div>
+    </section>
+
+    <!-- ===================== CONTENT ===================== -->
+    <section class="section">
+      <div class="container legal" style="max-width:820px">
+        <p class="updated">Last updated: 17 May 2026</p>
+
+        <h2>Our approach</h2>
+        <p>Corporate clients share data with us only when they trust us with it. We treat security as a design requirement, not an afterthought — every engagement is built to keep sensitive data under your control.</p>
+
+        <h2>Zero-data-retention</h2>
+        <p>Our pipelines are designed so that your data is processed in isolation and not stored or used to train models. Where retention is required for a feature, it is explicit, scoped and agreed in the engagement contract.</p>
+
+        <h2>AI guardrails</h2>
+        <p>We apply input and output validation to prevent unsafe, off-policy or hallucinated responses, with policy controls tuned to each client's risk profile.</p>
+
+        <h2>Private infrastructure</h2>
+        <p>Deployments run in your own VPC or on AWS Bedrock, with model endpoints isolated to your environment. Data is encrypted in transit (TLS) and at rest.</p>
+
+        <h2>Access control</h2>
+        <p>We enforce role-based access, least-privilege permissions and multi-factor authentication for our team. Full audit trails record who accessed what and when.</p>
+
+        <h2>Monitoring &amp; observability</h2>
+        <p>Production systems are continuously monitored for quality, drift, cost and anomalies, so issues are surfaced before they reach users.</p>
+
+        <h2>Compliance alignment</h2>
+        <p>Our architecture is aligned with the principles of SOC 2, GDPR and ISO 42001. We are happy to sign an NDA before any sensitive detail is shared and to complete vendor security reviews.</p>
+
+        <h2>Responsible disclosure</h2>
+        <p>If you believe you have found a security vulnerability in this website or our services, please report it privately to <a href="mailto:contact@leadaistudio.com">contact@leadaistudio.com</a>. We ask that you give us reasonable time to investigate and remediate before any public disclosure, and we will not pursue good-faith research conducted under this policy.</p>
+
+        <h2>Contact</h2>
+        <p>For security questions, due-diligence documentation or to report an issue, email <a href="mailto:contact@leadaistudio.com">contact@leadaistudio.com</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="Lead AI Studio home">
+            <img src="assets/img/logo.svg" alt="" width="30" height="30" />
+            <span class="brand-name">Lead<span class="brand-accent">AI</span>Studio</span>
+          </a>
+          <p>Secure, production-grade AI that makes day-to-day work effortless — for corporate and small-business teams alike.</p>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/lead-ai-studio" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.5 8h4V24h-4Zm7 0h3.8v2.2h.05c.53-1 1.83-2.2 3.95-2.2 4.2 0 5 2.77 5 6.37V24h-4v-7c0-1.67-.03-3.8-2.32-3.8-2.32 0-2.68 1.8-2.68 3.67V24h-4Z"/></svg>
+            </a>
+            <a href="mailto:contact@leadaistudio.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </a>
+          </div>
+        </div>
+        <nav class="footer-col" aria-label="Services">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="services.html#secure-ai">Secure Enterprise AI</a></li>
+            <li><a href="services.html#automation">AI Workflow Automation</a></li>
+            <li><a href="services.html#rag">RAG + Knowledge AI</a></li>
+            <li><a href="services.html#cost">AI Cost Optimization</a></li>
+            <li><a href="services.html#llmops">LLMOps &amp; Governance</a></li>
+            <li><a href="services.html#infrastructure">Private AI Infrastructure</a></li>
+            <li><a href="services.html#agents">AI Agents for Operations</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Company">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="about.html#vision">Our vision</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Solutions">
+          <h3>For teams</h3>
+          <ul>
+            <li><a href="services.html#growth">Lead Generation</a></li>
+            <li><a href="services.html#growth">LinkedIn Search</a></li>
+            <li><a href="services.html#growth">Profile Optimization</a></li>
+            <li><a href="services.html#growth">AI Voice Assistance</a></li>
+            <li><a href="pricing.html">Plans for SOHO</a></li>
+          </ul>
+        </nav>
+        <div class="footer-col footer-news">
+          <h3>Stay informed</h3>
+          <p>Practical enterprise-AI insights — security, cost and governance. No spam.</p>
+          <form data-validate data-success="You're subscribed — thank you!">
+            <input type="email" placeholder="Work email" aria-label="Work email" required />
+            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+          </form>
+          <p class="form-note" style="margin-top:8px"></p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; <span data-year>2026</span> Lead AI Studio. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="security.html">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/chatbot.js" defer></script>
+</body>
+</html>

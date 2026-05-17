@@ -138,7 +138,7 @@
     demo: {
       label: "Book a demo",
       keywords: ["demo", "book", "call", "meeting", "consult", "talk", "speak", "contact", "human", "person", "sales", "reach"],
-      reply: "Great — let's set up a free consultation. We'll review your workflows and show where AI cuts cost and lifts performance, securely.<br><br>You can book directly on our contact page, or email <strong>hello@leadaistudio.com</strong>.",
+      reply: "Great — let's set up a free consultation. We'll review your workflows and show where AI cuts cost and lifts performance, securely.<br><br>You can book directly on our contact page, or email <strong>contact@leadaistudio.com</strong>.",
       quick: ["pricing", "our services", "security"],
       links: [{ text: "Book a demo →", href: "contact.html" }]
     }

@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-ovpp1_ffCEe9rZ5qwwaYu.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0b1f3d" />
+  <script>
+    /* apply saved/system theme before paint — avoids dark-mode flash */
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <title>Lead AI Studio | Secure Enterprise AI, Automation &amp; Cost Optimization</title>
   <meta name="description" content="Lead AI Studio builds secure, production-grade AI for corporate and small-business teams — workflow automation, RAG knowledge AI, LLM cost optimization, LLMOps governance, private AI infrastructure and AI agents for operations." />
@@ -46,7 +63,7 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Sales",
-      "email": "hello@leadaistudio.com",
+      "email": "contact@leadaistudio.com",
       "availableLanguage": ["English"]
     }
   }
@@ -100,7 +117,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Lead AI Studio home">
-        <img src="favicon.svg" alt="" width="30" height="30" />
+        <img src="assets/img/logo.svg" alt="" width="30" height="30" />
         <span class="brand-name">Lead<span class="brand-accent">AI</span>Studio</span>
       </a>
       <nav class="nav" aria-label="Primary">
@@ -153,11 +170,11 @@
           </div>
           <div class="hv-row">
             <span>LLM spend this month</span>
-            <strong>&#8595; 63% optimized</strong>
+            <strong>&#8595; <span data-count="63">0</span>% optimized</strong>
           </div>
           <div class="hv-row" style="flex-direction:column;align-items:stretch;gap:8px">
-            <div style="display:flex;justify-content:space-between"><span>Workflow automation coverage</span><strong>84%</strong></div>
-            <div class="hv-bar"><i style="width:84%"></i></div>
+            <div style="display:flex;justify-content:space-between"><span>Workflow automation coverage</span><strong><span data-count="84">0</span>%</strong></div>
+            <div class="hv-bar"><i data-bar="84"></i></div>
           </div>
           <div class="hv-row">
             <span>Guardrail checks passed</span>
@@ -179,13 +196,26 @@
     <div class="logos">
       <div class="container">
         <p>Built on and integrated with the platforms enterprises trust</p>
-        <div class="logos-row">
+      </div>
+      <div class="logos-marquee" aria-hidden="true">
+        <div class="logos-track">
           <span class="logo-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 7L4.5 5.6 12 4l7.5 1.6L12 9Z"/><path d="M2 12l10 5 10-5M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> AWS Bedrock</span>
           <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg> Salesforce</span>
           <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg> HubSpot</span>
           <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M9 9h.01M15 9h.01M9 14c1 1 5 1 6 0"/></svg> Slack</span>
           <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg> Microsoft 365</span>
           <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg> ServiceNow</span>
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/></svg> Google Workspace</span>
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/></svg> Jira</span>
+          <!-- duplicate set for seamless loop -->
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 7L4.5 5.6 12 4l7.5 1.6L12 9Z"/><path d="M2 12l10 5 10-5M2 17l10 5 10-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> AWS Bedrock</span>
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg> Salesforce</span>
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg> HubSpot</span>
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M9 9h.01M15 9h.01M9 14c1 1 5 1 6 0"/></svg> Slack</span>
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg> Microsoft 365</span>
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg> ServiceNow</span>
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/></svg> Google Workspace</span>
+          <span class="logo-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/></svg> Jira</span>
         </div>
       </div>
     </div>
@@ -302,6 +332,26 @@
       </div>
     </section>
 
+    <!-- ===================== PRODUCT TOUR / VIDEO ===================== -->
+    <section class="section bg-soft">
+      <div class="container" style="max-width:920px">
+        <div class="section-head reveal">
+          <span class="eyebrow">See it in action</span>
+          <h2>Watch how Lead AI Studio works</h2>
+          <p class="section-lead">
+            A short walkthrough of how we take a real workflow from manual and
+            costly to secure, automated and measured.
+          </p>
+        </div>
+        <!-- data-video: replace "aqz-KE-bpKQ" with your own YouTube video ID -->
+        <div class="video-card reveal reveal-d1" data-video="aqz-KE-bpKQ"
+             role="button" tabindex="0" aria-label="Play the Lead AI Studio product tour">
+          <div class="video-play" aria-hidden="true"></div>
+          <span class="vc-label">Product tour &middot; 2 min</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== SECURITY BAND ===================== -->
     <section class="section band-dark">
       <div class="container">
@@ -408,32 +458,92 @@
       </div>
     </section>
 
-    <!-- ===================== TESTIMONIALS ===================== -->
+    <!-- ===================== CASE STUDIES ===================== -->
     <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Case studies</span>
+          <h2>Real deployments, measurable outcomes</h2>
+          <p class="section-lead">A snapshot of what changed for teams after a Lead AI Studio engagement.</p>
+        </div>
+        <div class="case-grid">
+          <article class="case-card reveal">
+            <span class="tag tag-blue">Fintech &middot; Cost</span>
+            <h3>Cutting LLM spend on a support copilot</h3>
+            <p>A fintech's support AI was routing every query to a single premium model. We added multi-model routing, token trimming and a caching gateway.</p>
+            <div class="case-metrics">
+              <div class="case-metric"><strong>$48k</strong><span>monthly spend before</span></div>
+              <div class="case-metric win"><strong>$17k</strong><span>after &mdash; 64% lower</span></div>
+            </div>
+          </article>
+          <article class="case-card reveal reveal-d1">
+            <span class="tag tag-teal">IT Ops &middot; Automation</span>
+            <h3>An autonomous tier-1 service desk</h3>
+            <p>An IT operations team was drowning in repetitive tickets. We deployed governed AI service-desk agents with guardrails and human escalation paths.</p>
+            <div class="case-metrics">
+              <div class="case-metric"><strong>9 hrs</strong><span>avg. resolution before</span></div>
+              <div class="case-metric win"><strong>4 min</strong><span>auto-resolved after</span></div>
+            </div>
+          </article>
+          <article class="case-card reveal reveal-d2">
+            <span class="tag tag-amber">SOHO &middot; Pilot</span>
+            <h3>From AI-curious to production in 2 weeks</h3>
+            <p>A small consulting firm needed proof before committing. A fixed-price pilot automated proposal drafting and client research end to end.</p>
+            <div class="case-metrics">
+              <div class="case-metric"><strong>12 hrs</strong><span>manual work / week</span></div>
+              <div class="case-metric win"><strong>70%</strong><span>of it automated</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIALS ===================== -->
+    <section class="section bg-soft">
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">Client outcomes</span>
           <h2>Results corporate teams care about</h2>
         </div>
-        <div class="grid grid-3">
-          <figure class="quote reveal">
-            <p>Lead AI Studio cut our model spend by more than half in the first quarter — without any drop in answer quality. The cost observability alone paid for the project.</p>
-            <figcaption class="quote-by"><span class="quote-avatar">RM</span><span><strong>R. Mehta</strong><span>VP Engineering, Fintech</span></span></figcaption>
-          </figure>
-          <figure class="quote reveal reveal-d1">
-            <p>Their AI service-desk agents now resolve a large share of tier-1 tickets autonomously. Our team finally focuses on the work that needs real judgment.</p>
-            <figcaption class="quote-by"><span class="quote-avatar">SK</span><span><strong>S. Khan</strong><span>Head of IT Operations</span></span></figcaption>
-          </figure>
-          <figure class="quote reveal reveal-d2">
-            <p>As a small firm, we were nervous about AI and data. The guardrails and private setup made it an easy yes — and the pilot proved value in two weeks.</p>
-            <figcaption class="quote-by"><span class="quote-avatar">AT</span><span><strong>A. Torres</strong><span>Founder, Consulting SOHO</span></span></figcaption>
-          </figure>
+        <div class="carousel testi-carousel reveal" data-carousel data-autoplay="6500"
+             role="region" aria-roledescription="carousel" aria-label="Client testimonials" tabindex="0">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <figure class="quote carousel-slide">
+                <p>Lead AI Studio cut our model spend by more than half in the first quarter — without any drop in answer quality. The cost observability alone paid for the project.</p>
+                <figcaption class="quote-by"><span class="quote-avatar">RM</span><span><strong>R. Mehta</strong><span>VP Engineering, Fintech</span></span></figcaption>
+              </figure>
+              <figure class="quote carousel-slide">
+                <p>Their AI service-desk agents now resolve a large share of tier-1 tickets autonomously. Our team finally focuses on the work that needs real judgment.</p>
+                <figcaption class="quote-by"><span class="quote-avatar">SK</span><span><strong>S. Khan</strong><span>Head of IT Operations</span></span></figcaption>
+              </figure>
+              <figure class="quote carousel-slide">
+                <p>As a small firm, we were nervous about AI and data. The guardrails and private setup made it an easy yes — and the pilot proved value in two weeks.</p>
+                <figcaption class="quote-by"><span class="quote-avatar">AT</span><span><strong>A. Torres</strong><span>Founder, Consulting SOHO</span></span></figcaption>
+              </figure>
+              <figure class="quote carousel-slide">
+                <p>We went from AI pilot purgatory to a governed production rollout in under a quarter. The LLMOps dashboards gave our board the confidence to scale.</p>
+                <figcaption class="quote-by"><span class="quote-avatar">LN</span><span><strong>L. Nguyen</strong><span>Director of Data, Insurance</span></span></figcaption>
+              </figure>
+              <figure class="quote carousel-slide">
+                <p>The fixed-price 2-week pilot was the smartest spend of our year. We watched the automation handle real tickets before committing to anything bigger.</p>
+                <figcaption class="quote-by"><span class="quote-avatar">DB</span><span><strong>D. Brooks</strong><span>Operations Manager, Logistics</span></span></figcaption>
+              </figure>
+            </div>
+          </div>
+          <button class="carousel-arrow prev" type="button" aria-label="Previous testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-arrow next" type="button" aria-label="Next testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+          <div class="carousel-dots" role="tablist" aria-label="Select testimonial"></div>
         </div>
       </div>
     </section>
 
     <!-- ===================== FAQ ===================== -->
-    <section class="section bg-soft">
+    <section class="section">
       <div class="container" style="max-width:820px">
         <div class="section-head reveal">
           <span class="eyebrow">Questions</span>
@@ -485,7 +595,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand" href="index.html" aria-label="Lead AI Studio home">
-            <img src="favicon.svg" alt="" width="30" height="30" />
+            <img src="assets/img/logo.svg" alt="" width="30" height="30" />
             <span class="brand-name">Lead<span class="brand-accent">AI</span>Studio</span>
           </a>
           <p>Secure, production-grade AI that makes day-to-day work effortless — for corporate and small-business teams alike.</p>
@@ -493,7 +603,7 @@
             <a href="https://www.linkedin.com/company/lead-ai-studio" target="_blank" rel="noopener" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.5 8h4V24h-4Zm7 0h3.8v2.2h.05c.53-1 1.83-2.2 3.95-2.2 4.2 0 5 2.77 5 6.37V24h-4v-7c0-1.67-.03-3.8-2.32-3.8-2.32 0-2.68 1.8-2.68 3.67V24h-4Z"/></svg>
             </a>
-            <a href="mailto:hello@leadaistudio.com" aria-label="Email">
+            <a href="mailto:contact@leadaistudio.com" aria-label="Email">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             </a>
           </div>

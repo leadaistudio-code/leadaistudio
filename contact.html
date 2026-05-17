@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0b1f3d" />
+  <script>
+    /* apply saved/system theme before paint — avoids dark-mode flash */
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <title>Book a Demo | Contact Lead AI Studio</title>
   <meta name="description" content="Book a free 30-minute AI demo with Lead AI Studio. We review your workflows, pinpoint high-impact AI opportunities and propose a fixed-price 2-week pilot — securely." />
@@ -46,7 +57,7 @@
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Sales",
-      "email": "hello@leadaistudio.com",
+      "email": "contact@leadaistudio.com",
       "availableLanguage": ["English"]
     }
   }
@@ -72,12 +83,12 @@
       "@type": "Organization",
       "name": "Lead AI Studio",
       "url": "https://www.leadaistudio.com/",
-      "email": "hello@leadaistudio.com",
+      "email": "contact@leadaistudio.com",
       "sameAs": ["https://www.linkedin.com/company/lead-ai-studio"],
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "Sales",
-        "email": "hello@leadaistudio.com",
+        "email": "contact@leadaistudio.com",
         "availableLanguage": ["English"]
       }
     }
@@ -92,7 +103,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Lead AI Studio home">
-        <img src="favicon.svg" alt="" width="30" height="30" />
+        <img src="assets/img/logo.svg" alt="" width="30" height="30" />
         <span class="brand-name">Lead<span class="brand-accent">AI</span>Studio</span>
       </a>
       <nav class="nav" aria-label="Primary">
@@ -128,6 +139,38 @@
       </div>
     </section>
 
+    <!-- ===================== INSTANT SCHEDULER ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Pick a time</span>
+          <h2>Book your demo instantly</h2>
+          <p class="section-lead">
+            Choose a slot that suits you and your confirmation lands in your inbox right away.
+            Prefer email? Use the request form below instead.
+          </p>
+        </div>
+        <!-- Replace data-url with your Calendly or Cal.com scheduling link -->
+        <div class="cal-embed reveal">
+          <div class="calendly-inline-widget" data-url="https://calendly.com/theleadaistudio/30min"
+               style="min-width:320px;height:660px;">
+            <div class="cal-fallback">
+              <div class="card-icon" style="width:50px;height:50px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              </div>
+              <h3>Opening the scheduler&hellip;</h3>
+              <p style="color:var(--slate);font-size:.93rem;margin-top:6px">
+                If the calendar doesn't load, email
+                <a href="mailto:contact@leadaistudio.com" style="color:var(--blue);font-weight:600">contact@leadaistudio.com</a>
+                and we'll send you open times.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
     <!-- ===================== CONTACT / BOOKING ===================== -->
     <section class="section">
       <div class="container">
@@ -156,7 +199,7 @@
                 </span>
                 <span style="font-size:.95rem;color:var(--slate)">
                   Email us directly at
-                  <a href="mailto:hello@leadaistudio.com" style="color:var(--blue);font-weight:600">hello@leadaistudio.com</a>
+                  <a href="mailto:contact@leadaistudio.com" style="color:var(--blue);font-weight:600">contact@leadaistudio.com</a>
                 </span>
               </div>
               <div style="display:flex;align-items:center;gap:12px">
@@ -324,7 +367,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand" href="index.html" aria-label="Lead AI Studio home">
-            <img src="favicon.svg" alt="" width="30" height="30" />
+            <img src="assets/img/logo.svg" alt="" width="30" height="30" />
             <span class="brand-name">Lead<span class="brand-accent">AI</span>Studio</span>
           </a>
           <p>Secure, production-grade AI that makes day-to-day work effortless — for corporate and small-business teams alike.</p>
@@ -332,7 +375,7 @@
             <a href="https://www.linkedin.com/company/lead-ai-studio" target="_blank" rel="noopener" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.5 8h4V24h-4Zm7 0h3.8v2.2h.05c.53-1 1.83-2.2 3.95-2.2 4.2 0 5 2.77 5 6.37V24h-4v-7c0-1.67-.03-3.8-2.32-3.8-2.32 0-2.68 1.8-2.68 3.67V24h-4Z"/></svg>
             </a>
-            <a href="mailto:hello@leadaistudio.com" aria-label="Email">
+            <a href="mailto:contact@leadaistudio.com" aria-label="Email">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             </a>
           </div>
