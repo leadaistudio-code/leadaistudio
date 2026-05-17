@@ -182,8 +182,10 @@
         <div class="footer-col footer-news">
           <h3>Stay informed</h3>
           <p>Practical enterprise-AI insights — security, cost and governance. No spam.</p>
-          <form data-validate data-success="You're subscribed — thank you!">
-            <input type="email" placeholder="Work email" aria-label="Work email" required />
+          <form name="newsletter" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" data-validate data-success="You're subscribed — thank you!">
+            <input type="hidden" name="form-name" value="newsletter" />
+            <p hidden><label>Skip this field if you are human: <input name="bot-field" /></label></p>
+            <input type="email" name="email" placeholder="Work email" aria-label="Work email" required />
             <button class="btn btn-primary btn-sm" type="submit">Join</button>
           </form>
           <p class="form-note" style="margin-top:8px"></p>

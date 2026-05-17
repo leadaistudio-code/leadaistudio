@@ -272,9 +272,10 @@
     start();
   });
 
-  /* ---- generic form validation ---- */
+  /* ---- form validation + Netlify Forms submission ---- */
   $$("form[data-validate]").forEach(function (form) {
     var note = $(".form-note", form);
+    var submitBtn = $('[type="submit"]', form);
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var ok = true;
@@ -284,15 +285,43 @@
         input.classList.toggle("invalid", !valid);
         if (!valid) ok = false;
       });
-      if (!note) return;
       if (!ok) {
-        note.style.color = "#ef4444";
-        note.textContent = "Please complete the required fields with a valid email.";
+        if (note) {
+          note.style.color = "#ef4444";
+          note.textContent = "Please complete the required fields with a valid email.";
+        }
         return;
       }
-      note.style.color = "var(--teal)";
-      note.textContent = form.getAttribute("data-success") ||
+
+      var success = form.getAttribute("data-success") ||
         "Thank you — we've received your request and will reply within one business day.";
+
+      /* Netlify Forms — submit via AJAX so the inline success message is kept */
+      if (form.hasAttribute("data-netlify")) {
+        var label = submitBtn ? submitBtn.textContent : "";
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending…"; }
+        if (note) { note.style.color = "var(--slate)"; note.textContent = "Sending…"; }
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(new FormData(form)).toString()
+        }).then(function (res) {
+          if (!res.ok) throw new Error(String(res.status));
+          if (note) { note.style.color = "var(--teal)"; note.textContent = success; }
+          form.reset();
+        }).catch(function () {
+          if (note) {
+            note.style.color = "#ef4444";
+            note.textContent = "Sorry — the form could not be sent. Please email contact@leadaistudio.com.";
+          }
+        }).then(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = label; }
+        });
+        return;
+      }
+
+      /* fallback when no form backend is configured */
+      if (note) { note.style.color = "var(--teal)"; note.textContent = success; }
       form.reset();
     });
   });
@@ -444,7 +473,7 @@
     var an = document.createElement("script");
     an.defer = true;
     an.setAttribute("data-domain", "leadaistudio.com");
-    an.src = "https://plausible.io/js/script.js";
+    an.src = "https://plausible.io/js/pa-ovpp1_ffCEe9rZ5qwwaYu.js";
     document.head.appendChild(an);
   }
 })();
